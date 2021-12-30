@@ -1,0 +1,95 @@
+package ${packageName}.service.impl;
+
+import com.ewem.common.utils.StringUtils;
+import org.springframework.stereotype.Service;
+import com.ewem.common.core.mybatisplus.ServicePlusImpl;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import ${packageName}.domain.${ClassName};
+import ${packageName}.mapper.${ClassName}Mapper;
+import ${packageName}.service.I${ClassName}Service;
+
+import java.util.List;
+import java.util.Collection;
+
+/**
+ * ${functionName}Service业务层处理
+ *
+ * @author ${author}
+ * @date ${datetime}
+ */
+@Service
+public class ${ClassName}ServiceImpl extends ServicePlusImpl<${ClassName}Mapper, ${ClassName}> implements I${ClassName}Service {
+
+    @Override
+    public ${ClassName} queryById(${pkColumn.javaType} ${pkColumn.javaField}){
+        return getById(${pkColumn.javaField});
+    }
+
+    @Override
+    public List<${ClassName}> queryList(${ClassName} ${className}) {
+        return list(buildQueryWrapper(${className}));
+    }
+
+    private LambdaQueryWrapper<${ClassName}> buildQueryWrapper(${ClassName} ${className}) {
+        //Map<String, Object> params = ${className}.getParams();
+        LambdaQueryWrapper<${ClassName}> lqw = Wrappers.lambdaQuery();
+#foreach($column in $columns)
+#if($column.query)
+#set($queryType=$column.queryType)
+#set($javaField=$column.javaField)
+#set($javaType=$column.javaType)
+#set($columnName=$column.columnName)
+#set($AttrName=$column.javaField.substring(0,1).toUpperCase() + ${column.javaField.substring(1)})
+#set($mpMethod=$column.queryType.toLowerCase())
+#if($queryType != 'BETWEEN')
+#if($javaType == 'String')
+#set($condition='StringUtils.isNotBlank('+${className}+'.get'+$AttrName+'())')
+#else
+#set($condition=${className}+'.get'+$AttrName+'() != null')
+#end
+        lqw.$mpMethod($condition, ${ClassName}::get$AttrName, ${className}.get$AttrName());
+#else
+        lqw.between(params.get("begin$AttrName") != null && params.get("end$AttrName") != null,
+            ${ClassName}::get$AttrName ,params.get("begin$AttrName"), params.get("end$AttrName"));
+#end
+#end
+#end
+        return lqw;
+    }
+
+    @Override
+    public Boolean insertBy(${ClassName} ${className}) {
+        validEntityBeforeSave(${className});
+        return save(${className});
+    }
+
+    @Override
+    public Boolean updateBy(${ClassName} ${className}) {
+        validEntityBeforeUpdate(${className});
+        return updateById(${className});
+    }
+
+    /**
+     * 保存前的数据校验
+     *
+     * @param ${className} 实体类数据
+     */
+    private void validEntityBeforeSave(${ClassName} ${className}){
+    }
+
+    /**
+     * 修改前的数据校验
+     *
+     * @param ${className} 实体类数据
+     */
+    private void validEntityBeforeUpdate(${ClassName} ${className}) {
+    }
+
+    @Override
+    public Boolean deleteWithValidByIds(Collection<${pkColumn.javaType}> ids, Boolean isValid) {
+        if(isValid){
+        }
+        return removeByIds(ids);
+    }
+}

@@ -1,0 +1,40 @@
+package ${packageName}.domain;
+
+import com.baomidou.mybatisplus.annotation.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
+import java.io.Serializable;
+import lombok.EqualsAndHashCode;
+import com.ewem.common.core.domain.BaseEntityPlus;
+
+/**
+ * ${functionName}对象 ${tableName}
+ *
+ * @author ${author}
+ * @date ${datetime}
+ */
+@Data
+@NoArgsConstructor
+@Accessors(chain = true)
+@EqualsAndHashCode(callSuper = true)
+@TableName("${tableName}")
+public class ${ClassName} extends BaseEntityPlus implements Serializable {
+
+    private static final long serialVersionUID=1L;
+
+#foreach ($column in $columns)
+
+    /**
+     * $column.columnComment
+     */
+#if($column.javaField=='version')
+    @Version
+#end
+#if($column.isPk==1)
+    @TableId(value = "$column.columnName")
+#end
+    private $column.javaType $column.javaField;
+#end
+
+}

@@ -1,0 +1,51 @@
+package ${packageName}.service;
+
+import ${packageName}.domain.${ClassName};
+import com.ewem.common.core.mybatisplus.IServicePlus;
+
+
+import java.util.Collection;
+import java.util.List;
+
+/**
+ * ${functionName}Service接口
+ *
+ * @author ${author}
+ * @date ${datetime}
+ */
+public interface I${ClassName}Service extends IServicePlus<${ClassName}> {
+
+	/**
+	 * 查询单个
+	 * @return
+	 */
+	${ClassName} queryById(${pkColumn.javaType} ${pkColumn.javaField});
+
+
+	/**
+	 * 查询列表
+	 */
+	List<${ClassName}> queryList(${ClassName} ${className});
+
+	/**
+	 * 根据新增业务对象插入${functionName}
+	 * @param ${className} ${functionName}新增业务对象
+	 * @return
+	 */
+	Boolean insertBy(${ClassName} ${className});
+
+	/**
+	 * 根据编辑业务对象修改${functionName}
+	 * @param ${className} ${functionName}编辑业务对象
+	 * @return
+	 */
+	Boolean updateBy(${ClassName} ${className});
+
+	/**
+	 * 校验并删除数据
+	 * @param ids 主键集合
+	 * @param isValid 是否校验,true-删除前校验,false-不校验
+	 * @return
+	 */
+	Boolean deleteWithValidByIds(Collection<${pkColumn.javaType}> ids, Boolean isValid);
+}

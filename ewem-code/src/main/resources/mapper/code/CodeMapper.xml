@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ewem.code.mapper.CodeMapper">
+
+    <resultMap type="Code" id="CodeResult">
+        <result property="id" column="id"/>
+        <result property="code" column="code"/>
+        <result property="parentId" column="parent_id"/>
+        <result property="spec" column="spec"/>
+        <result property="delFlag" column="del_flag"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remark" column="remark"/>
+    </resultMap>
+
+    <sql id="selectCodeVo">
+        select id, code, parent_id, spec, del_flag, create_by, create_time, update_by, update_time, remark from ewem_code
+    </sql>
+
+<!--    <select id="selectCodeList" parameterType="Code" resultMap="CodeResult">
+        <include refid="selectCodeVo"/>
+        <where>
+            <if test="id != null ">and id = #{id}</if>
+            <if test="code != null  and code != ''">and code = #{code}</if>
+        </where>
+    </select>-->
+
+    <select id="selectCodeById" parameterType="Long" resultMap="CodeResult">
+        <include refid="selectCodeVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertCode" parameterType="Code" useGeneratedKeys="true" keyProperty="id">
+        insert into ewem_code
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="code != null">code,</if>
+            <if test="parentId != null">parent_id,</if>
+            <if test="spec != null">spec,</if>
+            <if test="delFlag != null">del_flag,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="remark != null">remark,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="code != null">#{code},</if>
+            <if test="parentId != null">#{parentId},</if>
+            <if test="spec != null">#{spec},</if>
+            <if test="delFlag != null">#{delFlag},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="remark != null">#{remark},</if>
+        </trim>
+    </insert>
+
+    <update id="updateCode" parameterType="Code">
+        update ewem_code
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="code != null">code = #{code},</if>
+            <if test="parentId != null">parent_id = #{parentId},</if>
+            <if test="spec != null">spec = #{spec},</if>
+            <if test="delFlag != null">del_flag = #{delFlag},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="remark != null">remark = #{remark},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteCodeById" parameterType="Long">
+        delete from ewem_code where id = #{id}
+    </delete>
+
+    <delete id="deleteCodeByIds" parameterType="String">
+        delete from ewem_code where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

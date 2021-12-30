@@ -1,0 +1,14 @@
+package ${packageName}.mapper;
+
+import ${packageName}.domain.${ClassName};
+import com.ewem.common.core.mybatisplus.BaseMapperPlus;
+
+/**
+ * ${functionName}Mapper接口
+ *
+ * @author ${author}
+ * @date ${datetime}
+ */
+public interface ${ClassName}Mapper extends BaseMapperPlus<${ClassName}> {
+
+}

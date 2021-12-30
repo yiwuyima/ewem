@@ -1,0 +1,104 @@
+package ${packageName}.controller;
+
+import java.util.List;
+import java.util.Arrays;
+
+import lombok.RequiredArgsConstructor;
+import javax.validation.constraints.*;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.validation.annotation.Validated;
+import com.ewem.common.annotation.RepeatSubmit;
+import com.ewem.common.annotation.Log;
+import com.ewem.common.core.controller.BaseController;
+import com.ewem.common.core.domain.AjaxResult;
+import com.ewem.common.enums.BusinessType;
+import com.ewem.common.utils.poi.ExcelUtil;
+import com.ewem.code.domain.${ClassName};
+import ${packageName}.service.I${ClassName}Service;
+#if($table.crud || $table.sub)
+import com.ewem.common.core.page.TableDataInfo;
+#elseif($table.tree)
+#end
+
+/**
+ * ${functionName}Controller
+ *
+ * @author ${author}
+ * @date ${datetime}
+ */
+@Validated
+@RequiredArgsConstructor(onConstructor_ = @Autowired)
+@RestController
+@RequestMapping("/${moduleName}/${businessName}")
+public class ${ClassName}Controller extends BaseController {
+
+    private final I${ClassName}Service i${ClassName}Service;
+
+    /**
+     * 查询${functionName}列表
+     */
+    @PreAuthorize("@ss.hasPermi('${permissionPrefix}:list')")
+    @GetMapping("/list")
+    public TableDataInfo list(${ClassName} ${className}) {
+        startPage();
+        List<${ClassName}> list = i${ClassName}Service.queryList(${className});
+        return getDataTable(list);
+    }
+
+    /**
+     * 导出${functionName}列表
+     */
+    @PreAuthorize("@ss.hasPermi('${permissionPrefix}:export')")
+    @Log(title = "${functionName}", businessType = BusinessType.EXPORT)
+    @GetMapping("/export")
+    public AjaxResult export(${ClassName} ${className}) {
+        List<${ClassName}> list = i${ClassName}Service.queryList(${className});
+        return new ExcelUtil<>(${ClassName}.class).exportExcel(list, "${functionName}");
+
+    }
+
+    /**
+     * 获取${functionName}详细信息
+     */
+    @PreAuthorize("@ss.hasPermi('${permissionPrefix}:query')")
+    @GetMapping("/{${pkColumn.javaField}}")
+    public AjaxResult getInfo(@NotNull(message = "主键不能为空")
+                                                  @PathVariable("${pkColumn.javaField}") ${pkColumn.javaType} ${pkColumn.javaField}) {
+        return AjaxResult.success(i${ClassName}Service.queryById(${pkColumn.javaField}));
+    }
+
+    /**
+     * 新增${functionName}
+     */
+    @PreAuthorize("@ss.hasPermi('${permissionPrefix}:add')")
+    @Log(title = "${functionName}", businessType = BusinessType.INSERT)
+    @RepeatSubmit()
+    @PostMapping()
+    public AjaxResult add(@Validated @RequestBody ${ClassName} ${className}) {
+        return toAjax(i${ClassName}Service.insertBy(${className}) ? 1 : 0);
+    }
+
+    /**
+     * 修改${functionName}
+     */
+    @PreAuthorize("@ss.hasPermi('${permissionPrefix}:edit')")
+    @Log(title = "${functionName}", businessType = BusinessType.UPDATE)
+    @RepeatSubmit()
+    @PutMapping()
+    public AjaxResult edit(@Validated @RequestBody ${ClassName} ${className}) {
+        return toAjax(i${ClassName}Service.updateBy(${className}) ? 1 : 0);
+    }
+
+    /**
+     * 删除${functionName}
+     */
+    @PreAuthorize("@ss.hasPermi('${permissionPrefix}:remove')")
+    @Log(title = "${functionName}" , businessType = BusinessType.DELETE)
+    @DeleteMapping("/{${pkColumn.javaField}s}")
+    public AjaxResult remove(@NotEmpty(message = "主键不能为空")
+                                       @PathVariable ${pkColumn.javaType}[] ${pkColumn.javaField}s) {
+        return toAjax(i${ClassName}Service.deleteWithValidByIds(Arrays.asList(${pkColumn.javaField}s), true) ? 1 : 0);
+    }
+}
