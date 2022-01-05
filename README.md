@@ -62,7 +62,5 @@
 ![输入图片说明](https://images.gitee.com/uploads/images/2021/0809/223955_3ef4e39b_1225299.png "合作联系")
 ![输入图片说明](https://images.gitee.com/uploads/images/2021/1120/192717_15fb3daf_1225299.png "111116.png")
 
-## 交流群
-
-QQ群：200735978
+## QQ交流群：200735978
    
