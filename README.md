@@ -6,6 +6,8 @@
 ## 内置功能(商业版)
 <img src="https://img-blog.csdnimg.cn/b71e438718d44aa585bcbee4c79f96f4.png" alt="内置功能"/>
 
+#### 国内访问：https://gitee.com/qrcode_project/ewem
+
 #### 系统演示(商业版)
 * 后端演示地址：http://49.234.212.77
 * 后端账号密码：admin/admin123
