@@ -1,66 +1,97 @@
-## 平台介绍 <a align = "center" href='https://gitee.com/qrcode_project/ewem/stargazers'><img src='https://gitee.com/qrcode_project/ewem/badge/star.svg?theme=dark' alt='star'></img></a>
-##### 首个 Java版 开源一物一码溯源防伪系统，目前二维码应用非常广泛，生产制造、品牌溯源、农产品、移动巡检、快消品。
-##### 大企业根据自己的经营特点定制开发。但中小企业很难找到符合自身需求的标准化产品，定制化开发的高成本也让中小企业望而却步。
-##### 故开发一套应用一物一码的轮子，欢迎各位 Star。
+# EWEM 一物一码溯源防伪系统 <a align = "center" href='https://gitee.com/qrcode_project/ewem/stargazers'><img src='https://gitee.com/qrcode_project/ewem/badge/star.svg?theme=dark' alt='star'></img></a>
 
-## 内置功能(商业版)
-<img src="https://img-blog.csdnimg.cn/b71e438718d44aa585bcbee4c79f96f4.png" alt="内置功能"/>
+> 面向品牌方、生产企业和软件公司的商品追溯、防伪验真、渠道管控与扫码数据系统。
 
-#### 国内访问：https://gitee.com/qrcode_project/ewem
+[官方网站](https://ewem.vip/) · [产品介绍](https://ewem.vip/products.html) · [合作咨询](https://ewem.vip/cooperation.html) · [SaaS 体验入口](https://admin.ewem.vip/)
 
-#### 系统演示(商业版)
-* 后端演示地址：http://49.234.212.77
-* 后端账号密码：admin/admin123
-* H5模拟环节流转体验地址(微信中打开)：http://49.234.212.77/h5
-* H5账号密码：ewem/ewem123
-* 溯源演示地址：http://49.234.212.77/c?c=TBRFEZRB75SQEMJR97
-    c=后面字符串为二维码，可在管理端赋码管理菜单获取，或管理端赋码管理扫码体验；
+## 仓库说明
 
-#### 本地演示(开源版)
-* 后端演示地址：http://localhost
-* 后端账号密码：admin/admin123
-* 溯源演示地址：http://localhost/c?c=xxx
-    c=后面字符串为二维码，可在管理端赋码管理菜单获取，或管理端赋码管理扫码体验；
+EWEM 是较早公开的一物一码 Java 项目之一。感谢大家多年来的关注、Star、Fork 和交流。
 
-### 开源版，请遵守Apache License2.0 协议，仅限学习交流，禁止商用。
+随着业务和产品持续迭代，早期开源代码已经不能代表当前产品。本仓库当前主分支停止公开代码更新，仅保留项目介绍、产品入口。
 
-#### 开源&商业区别
-| 开源 | 商业 | 
-|--|--|
-| 码生成 |码生成(自定义规则) |
-| 防伪码 | 防伪码(自定义规则) |
-|×|微信一物一码|
-|溯源|溯源|
-|防伪|防伪|
-|环节模板|环节模板|
-|环节录入|环节录入|
-|×|H5环节上传|
-|×|窜货管理|
-|批次管理|批次管理|
-|分类管理|分类管理|
-|产品管理|产品管理|
-|×|经销商管理|
-|×|门店管理|
-|×|数据报表|
-|×|更多功能...|
-## 应用场景
-<img  src="https://img-blog.csdnimg.cn/8bfdf596398e4dcaab744e9506dbd20a.png" alt="应用领域"/>
-
-## 技术选型（你好好看）
-* 前端采用Vue、Element UI。
-* 后端采用Spring Boot、Spring Security、Redis & Jwt。
-* 权限认证使用Jwt，支持多终端认证系统。
-* 吃水不忘挖井人，特别感谢：[Ruoyi](https://gitee.com/y_project/RuoYi)。
-
-## 二维码知识
-* https://www.qrcode.com
-* https://zhuanlan.zhihu.com/p/21463650
-* [微信一物一码官方文档](https://developers.weixin.qq.com/doc/offiaccount/Unique_Item_Code/Unique_Item_Code_API_Documentation.html)
+- 已经取得的历史开源版本，继续适用其发布时随附的 **Apache License 2.0**，具体权利与义务以对应版本中的 `LICENSE`、版权声明和第三方许可为准。
+- 商业源码版和SaaS 版是后续独立开发、持续维护的商业产品，功能、代码和服务范围与历史开源版本不同。
 
 
-## 加开发者微进群
+## 当前产品
+
+| 产品方式 | 适合对象 | 主要特点 | 了解与咨询 |
+| --- | --- | --- | --- |
+| SaaS 云服务 | 希望快速上线的品牌方、生产企业 | 云端开通，无需自行部署；按套餐使用；系统持续更新 | [进入体验](https://admin.ewem.vip/) |
+| 商业源码版 | 有部署和二次开发能力的软件公司、技术团队 | 交付约定版本源码，可部署到自有服务器，用于约定项目开发 | [咨询源码](https://ewem.vip/cooperation.html) |
+| 定制与私有化 | 有特殊流程、系统对接或专属部署要求的企业 | 按需求评估功能、接口、部署、实施和服务范围 | [提交需求](https://ewem.vip/cooperation.html) |
+
+不同产品版本分别维护。SaaS 演示功能不等于商业源码版的默认交付内容，最终以购买前确认的功能清单、订单和协议为准。
+
+## 核心能力
+
+- **商品与批次管理**：统一维护品牌、商品、生产批次和展示资料。
+- **一物一码管理**：批量申请和生成溯源码，管理码状态、码包与关联信息。
+- **溯源与防伪查询**：消费者扫码查看商品、批次、流通信息和防伪验证结果。
+- **渠道移动作业**：支持渠道人员扫码绑定、入库、出库和流通采集。
+- **渠道与窜货分析**：结合渠道区域、流向和扫码位置形成异常预警信息。
+- **消费者页面配置**：按项目配置图文、视频、企业信息、溯源轨迹和防伪组件。
+- **数据统计**：查看扫码趋势、商品排行、地区分布、渠道对比和业务记录。
+- **账号与权限**：按角色控制后台及渠道端人员可见菜单和数据范围。
+
+
+
+## 适用场景
+
+- 食品饮料、农产品、酒水、美妆、保健品和工业品的商品溯源。
+- 一物一码防伪查询、首次与重复扫码提示。
+- 经销商、仓库和门店的扫码入库、出库与流向记录。
+- 品牌方查看扫码区域、时间趋势和渠道异常信息。
+- 软件公司基于商业源码承接客户项目和进行二次开发。
+
+## 如何选择
+
+### 我是品牌方或生产企业
+
+希望尽快试用并减少部署维护工作，建议选择 SaaS。先用一款商品跑通“建商品、申请码、扫码查询、后台看记录”的完整流程，再确定正式套餐。
+
+[查看 SaaS 产品](https://ewem.vip/products.html) · [进入体验](https://admin.ewem.vip/)
+
+### 我是软件公司或技术团队
+
+有明确客户项目，需要自主部署、修改代码或对接其他系统，可了解商业源码版。咨询时请说明项目场景、所需功能、部署环境、预计上线时间和授权范围。
+
+[了解商业源码与私有化合作](https://ewem.vip/cooperation.html)
+
+## 常见问题
+
+### 这个仓库以后还会更新开源代码吗？
+
+当前没有继续公开新版源代码的计划。产品更新将以 SaaS、商业源码版和官网说明为准。
+
+### SaaS 和商业源码版有什么区别？
+
+SaaS 由服务方运行维护，客户开通账号后使用；商业源码版交付约定范围的源代码，由购买方部署和维护。两者功能范围分别确认。
+
+### 扫码结果能否直接证明商品一定为真？
+
+系统提供码值、业务资料和查询记录的校验结果。二维码可能被复制，标签工艺和业务数据来源也会影响判断，因此系统提示不能单独替代商品鉴定、供应链审计或司法结论。
+
+## 联系我们
+
+- 官方网站：[https://ewem.vip/](https://ewem.vip/)
+- 产品介绍：[https://ewem.vip/products.html](https://ewem.vip/products.html)
+- 合作咨询：[https://ewem.vip/cooperation.html](https://ewem.vip/cooperation.html)
+- Gitee 镜像：[https://gitee.com/qrcode_project/ewem](https://gitee.com/qrcode_project/ewem)
+
+咨询时请注明：**品牌方或软件公司、应用场景、预计码量、上线时间、SaaS 或源码需求**。
+
+---
+
+感谢每一位关注、使用、Star 和 Fork 过 EWEM 的朋友。
+
+
+## 微信
 ![输入图片说明](https://images.gitee.com/uploads/images/2021/0809/223955_3ef4e39b_1225299.png "合作联系")
-![输入图片说明](https://images.gitee.com/uploads/images/2021/1120/192717_15fb3daf_1225299.png "111116.png")
 
-## QQ交流群：200735978
+## QQ群：200735978
+
+
+
    
